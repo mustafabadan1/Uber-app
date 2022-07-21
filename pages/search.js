@@ -51,7 +51,7 @@ w-10 flex flex-col
 `;
 
 const InputContainer = tw.div`
-
+bg-white
 `;
 
 const Circle = tw.img`
