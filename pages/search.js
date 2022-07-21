@@ -13,19 +13,22 @@ const search = () => {
         <FormToIcons>
           <Circle src='https://img.icons8.com/ios-filled/50/9CA3AF/filled-circle.png' />
 
-          <Line
-            src='https://img.icons8.com/ios/50/9CA3AF/vertical-line.png'
-
-          />
+          <Line src='https://img.icons8.com/ios/50/9CA3AF/vertical-line.png' />
 
           <Square src='https://img.icons8.com/windows/50/000000/square-full.png' />
         </FormToIcons>
         <InputBoxes>
-        <Input placeholder = "Enter Pickup Location"/>
+          <Input placeholder='Enter Pickup Location' />
 
-        <Input placeholder = "Wher to?"/>
+          <Input placeholder='Where to?' />
         </InputBoxes>
+        <PlusIocn src='https://img.icons8.com/ios/50/000000/plus-math.png' />
       </InputContainer>
+      <SavedPlaces>
+        <StarIcon src='https://img.icons8.com/ios-filled/50/ffffff/star--v1.png' />
+        Save Places
+      </SavedPlaces>
+
       {/* Saved places */}
       {/* confirm location */}
     </Wrapper>
@@ -47,31 +50,41 @@ h-12
 `;
 
 const FormToIcons = tw.div`
-w-10 flex flex-col
+w-10 flex flex-col mr-2 items-center
 `;
 
 const InputContainer = tw.div`
-bg-white flexrterttgerg rgergergerg erg erg ergergerg
+bg-white flex items-center px-4 mb-2
 `;
 
 const Circle = tw.img`
-
+h-2.5 
 `;
 
 const Line = tw.img`
-
+h-10
 `;
 
 const Square = tw.img`
-
+h-3
 `;
-
 
 const InputBoxes = tw.div`
-
+flex flex-col flex-1
 `;
 
+const Input = tw.input`
+h-10 bg-gray-200 my-2   rounded-2 p-2 outline-none border-none
+`;
 
-const Input = tw.div`
+const PlusIocn = tw.img`
+w-8 h-8  rounded-full bg-gray-200 ml-3 
+`;
 
+const SavedPlaces = tw.div`
+flex  items-center bg-white px-4 py-2 text-md text-gray-500 font-semibold
+`;
+
+const StarIcon = tw.img`
+bg-gray-400 w-10 h-10 p-2 rounded-full mr-2
 `;
