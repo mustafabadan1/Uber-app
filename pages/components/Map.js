@@ -12,15 +12,21 @@ const Map = () => {
     const map = new mapboxgl.Map({
       container: 'map',
 
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: 'mapbox://styles/mapbox/navigation-night-v1',
       center: [-99.29011, 39.39172],
       zoom: 3,
     });
   });
-  {
-    /* the id='map' meanning what should i put the map? , so its remine to map positions ,and u should type 'map' also in container of use effect    */
-  }
-  return <Wrapper id='map'>Map</Wrapper>;
+
+
+  const addToMap = (map) => {
+    // Create a default Marker and add it to the map.
+    const marker1 = new mapboxgl.Marker()
+      .setLngLat([12.554729, 55.70651])
+      .addTo(map);
+  };
+
+  return <Wrapper id='map'></Wrapper>;
 };
 
 export default Map;

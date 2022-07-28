@@ -14,7 +14,7 @@ export default function Home() {
         {/* header */}
         <Header>
           {/* logo  */}
-          <UberLogo src='https://i.ibb.co/84stgjq/uber-technologies-new-20218114.jpg' />
+          <UberLogo>Comp Logo</UberLogo> 
           <Profile>
             <Name>Jhon Stewart</Name>
             <UserImage src='https://yt3.ggpht.com/ytc/AKedOLRIFoRe8O_t9k6blviCt6Xtg6JkID67uw-Z1jhDNw=s88-c-k-c0x00ffffff-no-rj' />
@@ -41,7 +41,7 @@ export default function Home() {
         </Link>
 
         {/* inputButton */}
-        <InputButton>Where to?</InputButton>
+        <InputButton >Where to?</InputButton>
       </ActionItems>
     </Wrapper>
   );
@@ -53,15 +53,15 @@ flex flex-col  h-screen
 `;
 
 const ActionItems = tw.div`
- flex-1 p-4
+ flex-1 p-4 
 `;
 
 const Header = tw.div`
 flex justify-between items-center
 `;
 
-const UberLogo = tw.img`
-h-20
+const UberLogo = tw.div`
+h-10  text-2xl font-semibold text-stone-500 items-center  underline 
 `;
 
 const Profile = tw.div`
@@ -77,7 +77,7 @@ h-12 w-12 rounded-full border border-gray-200 p-px
 `;
 
 const ActionButtons = tw.div`
-flex 
+flex cursor-pointer
 `;
 
 const ActionButton = tw.div`
