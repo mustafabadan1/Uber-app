@@ -1,26 +1,48 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import Map from './components/Map';
 import tw from 'tailwind-styled-components';
 
 const Confirm = () => {
+  //= 1-pickup
+  const getPickupCoordinates = () => {
+    const pickup = 'Santa Monica';
+  
+    //? :- we add "?" quistion mark at the end of fetch url , so it means that the "?" for access token so , its important to add it to url link , dont forget that , neverrr everrrr!
+    fetch(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?` +
+        new URLSearchParams({
+          access_token:
+            'pk.eyJ1IjoibXVzdGFmYWJvYiIsImEiOiJjbDVtNjZteGswcXJuM2ltZzhxMDRzaTkxIn0.eFFFkhgX8zuzFKcWBuAsTA',
+          limit: 1,
+        })
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.features[0].center);
+      });
 
-    
-    const getCoordinates = () => {
-      const location = 'Santa Monica';
+  
+  //= 2-drop-off
+  const getDropoffCoordinates = () => {
+    const dropoff = 'los Angeles';
+    fetch(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?` +
+        new URLSearchParams({
+          access_token:
+            'pk.eyJ1IjoibXVzdGFmYWJvYiIsImEiOiJjbDVtNjZteGswcXJuM2ltZzhxMDRzaTkxIn0.eFFFkhgX8zuzFKcWBuAsTA',
+          limit: 1,
+        })
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.features[0].center);
+      });
+  };
 
-      fetch (`https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json` + new URLSearchParams({
-        access_token
-      }))
-      .then (response => response.json())
-      .then (data=>{console.log(data)})
-    };
-
-
-    useEffect(()=>{
-
-      getCoordinates();
-
-    },[]) 
+  // ? dont forget "()" when you want to recall a function
+  useEffect(() => {
+    getPickupCoordinates();
+  },[]);
 
   return (
     <Wrapper>
@@ -29,10 +51,12 @@ const Confirm = () => {
     </Wrapper>
   );
 };
+
+};
+
 export default Confirm;
 
-
-// ! styling
+// ! :- styling
 const Wrapper = tw.div`
 flex h-screen flex-col`;
 
