@@ -7,7 +7,7 @@ import mapboxgl from 'mapbox-gl';
 mapboxgl.accessToken =
   'pk.eyJ1IjoibXVzdGFmYWJvYiIsImEiOiJjbDVtNjZteGswcXJuM2ltZzhxMDRzaTkxIn0.eFFFkhgX8zuzFKcWBuAsTA';
 
-const Map = () => {
+const Map = (props) => {
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: 'map',
@@ -16,14 +16,26 @@ const Map = () => {
       center: [-99.29011, 39.39172],
       zoom: 3,
     });
-  });
+    if (props.pickupCoordinates) {
+      addToMap(map, props.pickupCoordinates);
+    }
 
+    if (props.dropoffCoordinates) {
+      addToMap(map, props.dropoffCoordinates);
+    }
 
-  const addToMap = (map) => {
+    // = "if" for zooming when the map is uploaded
+    if (props.pickupCoordinates) {
+      map.fitBounds([props.dropoffCoordinates, props.pickupCoordinates]);
+    }
+  }, [props.dropoffCoordinates, props.pickupCoordinates]);
+
+  // ?:- coordinates its (arg) handle value from pickupCoordinates that we were call it in props.pickupCoordantes , so wwhen u go to confirm.jsx u ll see it, in <Map> that is props sender ..
+
+  const addToMap = (map, coordinates) => {
     // Create a default Marker and add it to the map.
-    const marker1 = new mapboxgl.Marker()
-      .setLngLat([12.554729, 55.70651])
-      .addTo(map);
+    // =(marker) this is why u see the marker icons in the map.
+    const marker1 = new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
   };
 
   return <Wrapper id='map'></Wrapper>;
