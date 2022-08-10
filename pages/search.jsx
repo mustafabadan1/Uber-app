@@ -3,6 +3,10 @@ import tw from 'tailwind-styled-components';
 import Link from 'next/link';
 
 const search = () => {
+
+  const  [pickup, setPickup] = useState("")
+  const  [dropoff, setDropoff] = useState("")
+
   return (
     <Wrapper>
       {/* Button container */}
@@ -33,8 +37,14 @@ const search = () => {
         Save Places
       </SavedPlaces>
 
-<Link href='/confirm'>
-<ConfirmButtonContainer>Confirm Location</ConfirmButtonContainer></Link>
+<Link href={{pathname:"/confirm",
+
+query:{
+  pickup:"Santa Monica",
+  dropoff:"Los Aangles"
+}}}>
+<ConfirmButtonContainer>Confirm Location</ConfirmButtonContainer>
+ </Link>
     </Wrapper>
   );
 };

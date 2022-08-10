@@ -24,10 +24,13 @@ const Map = (props) => {
       addToMap(map, props.dropoffCoordinates);
     }
 
-    // = "if" for zooming when the map is uploaded
+    // = "if" for zooming when the map is uploaded, and padding cus we need more space around the markers
     if (props.pickupCoordinates) {
-      map.fitBounds([props.dropoffCoordinates, props.pickupCoordinates]);
+      map.fitBounds([props.dropoffCoordinates, props.pickupCoordinates],{padding:100});
     }
+
+
+
   }, [props.dropoffCoordinates, props.pickupCoordinates]);
 
   // ?:- coordinates its (arg) handle value from pickupCoordinates that we were call it in props.pickupCoordantes , so wwhen u go to confirm.jsx u ll see it, in <Map> that is props sender ..
