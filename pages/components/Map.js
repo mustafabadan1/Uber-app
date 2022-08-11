@@ -19,7 +19,7 @@ const Map = (props) => {
     if (props.pickupCoordinates) {
       addToMap(map, props.pickupCoordinates);
     }
-
+// ? its basicly  sees if we have dropoff fill , so when the condision happen , it will return aa point in the map so u can see the marker , same thing for next "if". 
     if (props.dropoffCoordinates) {
       addToMap(map, props.dropoffCoordinates);
     }
@@ -41,11 +41,11 @@ const Map = (props) => {
     const marker1 = new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
   };
 
-  return <Wrapper id='map'></Wrapper>;
+  return <Wrapper  id='map'></Wrapper>;
 };
 
 export default Map;
 
 const Wrapper = tw.div`
-flex-1
+flex-1 h-1/2
 `;

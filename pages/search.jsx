@@ -1,21 +1,22 @@
-import React from 'react';
+import {useState} from 'react';
 import tw from 'tailwind-styled-components';
 import Link from 'next/link';
 
 const search = () => {
+  const [pickup, setPickup] = useState("");
+  const [dropoff, setDropoff] = useState('');
 
-  const  [pickup, setPickup] = useState("")
-  const  [dropoff, setDropoff] = useState("")
+  
 
   return (
     <Wrapper>
       {/* Button container */}
       <ButtonContainer>
-        <Link href="/">
-         <BackButton src='https://img.icons8.com/ios-filled/50/000000/left.png' />
-      </Link></ButtonContainer>
-        
-       
+        <Link href='/'>
+          <BackButton src='https://img.icons8.com/ios-filled/50/000000/left.png' />
+        </Link>
+      </ButtonContainer>
+
       {/*   Input continer*/}
       <InputContainer>
         <FormToIcons>
@@ -26,9 +27,14 @@ const search = () => {
           <Square src='https://img.icons8.com/windows/50/000000/square-full.png' />
         </FormToIcons>
         <InputBoxes>
-          <Input placeholder='Enter Pickup Location' />
+          <Input placeholder='Enter Pickup Location' value={pickup}
+            onChange={(e) => setPickup(e.target.value)}  />
 
-          <Input placeholder='Where to?' />
+          <Input
+            placeholder='Where to?'
+            alue={dropoff}
+            onChange={(e) => setDropoff(e.target.value)}
+          />
         </InputBoxes>
         <PlusIocn src='https://img.icons8.com/ios/50/000000/plus-math.png' />
       </InputContainer>
@@ -37,14 +43,18 @@ const search = () => {
         Save Places
       </SavedPlaces>
 
-<Link href={{pathname:"/confirm",
+      <Link
+        href={{
+          pathname: '/confirm',
 
-query:{
-  pickup:"Santa Monica",
-  dropoff:"Los Aangles"
-}}}>
-<ConfirmButtonContainer>Confirm Location</ConfirmButtonContainer>
- </Link>
+          query: {
+            pickup: pickup,
+            dropoff:dropoff
+          },
+        }}
+      >
+        <ConfirmButtonContainer>Confirm Location</ConfirmButtonContainer>
+      </Link>
     </Wrapper>
   );
 };
@@ -103,7 +113,7 @@ const StarIcon = tw.img`
 bg-gray-400 w-10 h-10 p-2 rounded-full mr-2
 `;
 
-const ConfirmButtonContainer = tw.div `
+const ConfirmButtonContainer = tw.div`
 bg-black text-white  text-center mt-2 mx-3  py-2 rounded-sm text-xl font-base cursor-pointer
 
-`
+`;
