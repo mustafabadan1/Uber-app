@@ -77,7 +77,7 @@ export default function Home() {
   );
 }
 
-// ! styling
+// ! styling eh
 const Wrapper = tw.div`
   flex flex-col h-screen 
 `
