@@ -11,7 +11,6 @@ const Map = (props) => {
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: 'map',
-
       style: 'mapbox://styles/mapbox/navigation-night-v1',
       center: [-99.29011, 39.39172],
       zoom: 3,
@@ -25,8 +24,10 @@ const Map = (props) => {
     }
 
     // = "if" for zooming when the map is uploaded, and padding cus we need more space around the markers
-    if (props.pickupCoordinates) {
-      map.fitBounds([props.dropoffCoordinates, props.pickupCoordinates],{padding:100});
+    if (props.pickupCoordinates && props.dropoffCoordinates) {
+      map.fitBounds([props.dropoffCoordinates, props.pickupCoordinates],
+        {padding:100
+        });
     }
 
 

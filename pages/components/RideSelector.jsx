@@ -11,7 +11,7 @@ const RideSelector = ({ pickupCoordinates, dropoffCoordinates }) => {
 
   useEffect(() => {
     rideDuration = fetch(
-      `https://api.mapbox.com/directions/v5/mapbox/driving/${pickupCoordinates[0]},${pickupCoordinates[1]};${dropoffCoordinates[0]},${dropoffCoordinates[1]}?access_token=pk.eyJ1IjoiZHJha29zaSIsImEiOiJja2x1YW9jdWswOHcyMnVvZXQ1aTVqcHBnIn0.G0SLu_zwAEU9_q8FIkHeaQ `
+      `https://api.mapbox.com/directions/v5/mapbox/driving/${pickupCoordinates[0]},${pickupCoordinates[1]};${dropoffCoordinates[0]},${dropoffCoordinates[1]}?geometries=geojson&access_token=pk.eyJ1IjoibXVzdGFmYWJvYiIsImEiOiJjbDVtNjZteGswcXJuM2ltZzhxMDRzaTkxIn0.eFFFkhgX8zuzFKcWBuAsTA`
     )
       .then(res => res.json())
       .then(data => {
@@ -21,7 +21,8 @@ const RideSelector = ({ pickupCoordinates, dropoffCoordinates }) => {
   return (
     <Wrapper>
       <Title>Choose a ride, or swipe up for more</Title>
-   
+      {/* 🔥 FAbio */}
+      {/* 🚀 Sam */}
       <CarList>
         {carList.map((car, index) => (
           <Car key={index}>
@@ -32,9 +33,8 @@ const RideSelector = ({ pickupCoordinates, dropoffCoordinates }) => {
             </CarDetails>
             <Price>{'$' + (rideDuration * car.multiplier).toFixed(2)}</Price>
           </Car>
-        ))} 
+        ))}
       </CarList>
-  
     </Wrapper>
   )
 }
@@ -57,12 +57,12 @@ text-sm
 const CarImage = tw.img`
 h-14 mr-4
 `
-
+// 🚀 Devlin
 const Car = tw.div`
 flex p-4 items-center
 `
 
-
+// 🔥 Heimen
 const Title = tw.div`
 text-gray-500 text-center text-xs py-2 border-b
 `
@@ -71,7 +71,7 @@ const CarList = tw.div`
 overflow-y-scroll
 `
 
-
+// Emeric 🔥
 const Wrapper = tw.div`
 flex-1 overflow-y-scroll flex flex-col
 `
