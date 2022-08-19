@@ -1,12 +1,37 @@
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import tw from 'tailwind-styled-components';
 import Map from './components/Map';
 import Link from 'next/link';
+import { auth } from '../firebase';
+// ?  "signOut" for signout
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  //? what are components? Reusable ui element
+  const [user, setUser] = useState(null);
+
+
+  const router = useRouter();
+  useEffect(() => {
+    // ? "onAuthStateChanged" this is listener for if the user is login or not
+    return onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser({
+          // ? if the user is logged in ? it will take your user email and your img email
+          name: user.displayName,
+          photoUrl: user.photoURL,
+        });
+      } else {
+        // ? if it not logged in , send me to login page babe :)
+        setUser(null);
+        router.push('/login');
+      }
+    });
+  }, []);
   return (
     <Wrapper>
       <Map />
@@ -14,10 +39,15 @@ export default function Home() {
         {/* header */}
         <Header>
           {/* logo  */}
-          <UberLogo>Comp Logo</UberLogo> 
+          <UberLogo src='https://i.ibb.co/84stgjq/uber-technologies-new-20218114.jpg' />
+
           <Profile>
-            <Name>Jhon Stewart</Name>
-            <UserImage src='https://yt3.ggpht.com/ytc/AKedOLRIFoRe8O_t9k6blviCt6Xtg6JkID67uw-Z1jhDNw=s88-c-k-c0x00ffffff-no-rj' />
+          <Name>{user && user.name}</Name>
+            <UserImage
+              src={user && user.photoUrl}
+              //? when the user is logged in , just hit the profile photo and it will logout and goes u to the login page
+              onClick={() => signOut(auth)}
+            />
           </Profile>
         </Header>
         {/* this is link for next page wich is "search" */}
@@ -41,7 +71,7 @@ export default function Home() {
         </Link>
 
         {/* inputButton */}
-        <InputButton >Where to?</InputButton>
+        <InputButton>Where to?</InputButton>
       </ActionItems>
     </Wrapper>
   );
@@ -49,46 +79,45 @@ export default function Home() {
 
 // ! styling
 const Wrapper = tw.div`
-flex flex-col  h-screen
-`;
+  flex flex-col h-screen 
+`
 
 const ActionItems = tw.div`
- flex-1 p-4 
-`;
+  flex-1 p-4
+`
 
 const Header = tw.div`
 flex justify-between items-center
-`;
+`
 
-const UberLogo = tw.div`
-h-10  text-2xl font-semibold text-stone-500 items-center  underline 
-`;
+const UberLogo = tw.img`
+h-28 
+`
 
 const Profile = tw.div`
-flex items-center 
-`;
+flex items-center
+`
 
 const Name = tw.div`
-mr-2 w-30 text-lg font-base
-`;
+mr-4 w-20 text-sm
+`
 
 const UserImage = tw.img`
-h-12 w-12 rounded-full border border-gray-200 p-px 
-`;
+h-12 w-12 rounded-full border border-gray-200 p-px cursor-pointer
+`
 
 const ActionButtons = tw.div`
-flex cursor-pointer
-`;
+flex
+`
 
 const ActionButton = tw.div`
-flex flex-col  bg-gray-200 rounded-lg flex-1 m-1 p-1 h-32 items-center justify-center transform hover:scale-105 transition text-lg font-semibold
-`;
+flex bg-gray-200 flex-1 m-1 h-32 items-center flex-col justify-center rounded-lg transform hover:scale-105 transition text-xl
+`
 
 const ActionButtonImage = tw.img`
 h-3/5
-`;
+`
 
 const InputButton = tw.div`
-h-3 bg-gray-200 text-xl p-8 flex items-center mt-4  rounded-lg
-`;
-
+h-20 bg-gray-200 text-2xl p-4 flex items-center mt-8
+`

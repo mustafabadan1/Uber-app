@@ -23,8 +23,5 @@ export const carList = [
     imgUrl: ' https://i.ibb.co/1nStPWT/uberblacksuv.png',
     service: 'Black SUV',
     multiplier: 2.8,
-  },
-
-  
-  
+  }
 ]

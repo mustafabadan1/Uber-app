@@ -3,6 +3,8 @@ import Map from './components/Map';
 import tw from 'tailwind-styled-components';
 import { useRouter } from 'next/router';
 import RideSelector from './components/RideSelector';
+import Link from 'next/link'
+
 
 const Confirm = () => {
   // = router title , so when u typing input , it will shows in the next page wich is confirm.jsx
@@ -10,8 +12,8 @@ const Confirm = () => {
   const { pickup, dropoff } = router.query;
 
   // =: Use State
-  const [pickupCoordinates, setPickupCoordinates] = useState();
-  const [dropoffCoordinates, setDropoffCoordinates] = useState();
+  const [pickupCoordinates, setPickupCoordinates] = useState(0,0);
+  const [dropoffCoordinates, setDropoffCoordinates] = useState(0,0);
 
   //= 1-pickup
   const getPickupCoordinates = (pickup) => {
@@ -54,36 +56,52 @@ const Confirm = () => {
 
   return (
     <Wrapper>
+       <ButtonContainer>
+        <Link href='/search'>
+          <BackButton src='https://img.icons8.com/ios-filled/50/000000/left.png' />
+        </Link>
+      </ButtonContainer>
       <Map
         pickupCoordinates={pickupCoordinates}
         dropoffCoordinates={dropoffCoordinates}
       />
       <RideContainer>
-        <RideSelector />
+        <RideSelector
+          pickupCoordinates={pickupCoordinates}
+          dropoffCoordinates={dropoffCoordinates}
+        />
         <ConfirmButtonContainer>
-          <ConfirmButton>
-             Confirm Uberx
-             
-          </ConfirmButton>
+          <ConfirmButton>Confirm Uberx</ConfirmButton>
         </ConfirmButtonContainer>
       </RideContainer>
-      
     </Wrapper>
-  
   );
 };
 
 export default Confirm;
 
 // ! :- styling
-const Wrapper = tw.div`
-flex h-screen flex-col `;
-
-const RideContainer = tw.div`
-flex flex-1 justify-between h-1/2 flex-col`;
+const ConfirmButton = tw.div`
+bg-black text-white my-4 mx-4 py-4 text-center text-xl
+`
 
 const ConfirmButtonContainer = tw.div`
 border-t-2
-`;
+`
 
-const ConfirmButton = tw.div`bg-black text-white my-4 m-4 py-4 text-center text-xl `;
+// Good Job Devlin
+const RideContainer = tw.div`
+flex-1 flex flex-col h-1/2
+`
+
+// good job Anthony
+const Wrapper = tw.div`
+flex h-screen flex-col
+`
+const ButtonContainer = tw.div`
+rounded-full absolute top-4 left-4 z-10 bg-white shadow-md cursor-pointer w-10
+`
+
+const BackButton = tw.img`
+h-full object-contain
+`
